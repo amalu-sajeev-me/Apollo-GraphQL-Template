@@ -5,7 +5,8 @@
   "main": "./dist/src/index.js",
   "scripts": {
     "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint . --fix --ext .ts",
+    "lint-staged": "lint-staged",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "tsc",
@@ -45,7 +46,7 @@
   "type": "module",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint-staged"
     }
   }
 }

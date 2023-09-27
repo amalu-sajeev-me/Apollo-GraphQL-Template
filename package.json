@@ -43,9 +43,6 @@
     "dotenv": "^16.3.1"
   },
   "type": "module",
-  "lint-staged": {
-    "*.{ts, tsx}": "eslint --fix"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

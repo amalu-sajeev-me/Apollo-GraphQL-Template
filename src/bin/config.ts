@@ -21,3 +21,4 @@ export class Config {
         }
     })();
 }
+export type IProcessEnv = z.infer<typeof Config.ENV_SCHEMA> & NodeJS.ProcessEnv;

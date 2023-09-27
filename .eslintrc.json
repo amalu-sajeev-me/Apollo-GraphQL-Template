@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json.schemastore.org/eslintrc",
     "env": {
         "browser": true,
         "es2021": true
@@ -16,10 +17,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
+        // "indent": [
+        //     "error",
+        //     ""
+        // ],
         "linebreak-style": [
             "error",
             "unix"
@@ -31,6 +32,10 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "@typescript-eslint/no-unused-vars": ["error", {
+            "varsIgnorePattern": "^_",
+            "argsIgnorePattern": "^_"
+            }]
     }
 }

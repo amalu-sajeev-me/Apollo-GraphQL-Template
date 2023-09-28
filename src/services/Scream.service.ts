@@ -17,7 +17,7 @@ export class Scream {
             throw new Error(`invalid log level: ${logLevel}`);
         }
         const color = Scream.levelColors[logLevel];
-        const logMessage = `${color} [${currentDate}] [${logLevel.toUpperCase()}] ${message}\x1b[0m]`;
+        const logMessage = `${color} [${currentDate}] [${logLevel.toUpperCase()}] ${message}\x1b[0m \n`;
         process.stdout.write(logMessage);
     }
     debug(message: string) {

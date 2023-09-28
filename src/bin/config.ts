@@ -1,20 +1,23 @@
+import { container, injectable } from 'tsyringe';
 import z from 'zod';
+import { Scream } from '../services/Scream.service';
 
+@injectable()
 export class Config {
-    private constructor(){}
+    private static readonly scream: Scream = container.resolve(Scream);
     public static ENV_SCHEMA = z.object({
         PORT: z.string().min(4),
     });
     protected static validateEnv = (() => {
         try {
             Config.ENV_SCHEMA.parse(process.env);
-            console.log('validated env vars');
+            Config.scream.debug('validated env vars');
         } catch (error) {
             if (error instanceof Error) {
-                console.log(error.message);
+                Config.scream.error(error.message);
             }
             else {
-                console.log('Invalid ENV Variables');
+                Config.scream.error('Invalid ENV Variables');
                 process.exit(1);
             }
 

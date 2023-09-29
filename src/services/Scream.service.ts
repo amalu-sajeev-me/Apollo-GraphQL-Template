@@ -1,23 +1,36 @@
+import chalk from 'chalk';
+import EventEmitter from 'events';
 import { injectable } from 'tsyringe';
 
 @injectable()
-export class Scream {
+export class Scream extends EventEmitter{
     private static readonly levels = ['debug', 'info', 'warning', 'error'] as const;
-    private static readonly levelColors: Record<typeof Scream.levels[number], string> = {
-        debug: '\x1b[35m',
-        info: '\x1b[32m',
-        warning: '\x1b[33m',
-        error: 'x1b[31m'
-    };
-    constructor() {}
+    constructor() {
+        super({captureRejections: true});
+    }
     log(level: typeof Scream.levels[number], message: string) {
         const currentDate = new Date().toISOString();
         const logLevel = level.toLowerCase();
         if (!Scream.levels.includes(logLevel as typeof Scream.levels[number])) {
             throw new Error(`invalid log level: ${logLevel}`);
         }
-        const color = Scream.levelColors[logLevel];
-        const logMessage = `${color} [${currentDate}] [${logLevel.toUpperCase()}] ${message}\x1b[0m \n`;
+        let logMessage = `[${currentDate}] [${logLevel.toUpperCase()}] ${message}\n`;
+        switch (level) {
+            case 'debug':
+                logMessage = chalk.blue(logMessage);
+                break;
+            case 'info':
+                logMessage = chalk.green(logMessage);
+                break;
+            case 'warning':
+                logMessage = chalk.bgYellow.red(logMessage);
+                break;
+            case 'error':
+                logMessage = chalk.bgWhite.red(logMessage);
+                break;
+            default:
+                break;
+        }
         process.stdout.write(logMessage);
     }
     debug(message: string) {

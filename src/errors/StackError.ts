@@ -1,4 +1,4 @@
-import { ERROR_TYPE } from './types';
+import { ERROR_TYPE } from './types.ts';
 
 export class StackError extends Error{
     public errorType = ERROR_TYPE.STACK;

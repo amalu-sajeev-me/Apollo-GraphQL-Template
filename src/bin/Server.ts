@@ -1,13 +1,13 @@
 import { container, injectable, singleton } from 'tsyringe';
 import { buildSchema } from 'type-graphql';
-import { UserResolver } from '../resolvers/';
+import { UserResolver } from '../resolvers/index.ts';
 import express, {Application} from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { StackError } from '../errors/StackError';
-import { IProcessEnv } from './config';
-import { MESSAGES } from 'src/constants/messages';
-import { Scream } from '../services/Scream.service';
-import { Mongo } from './Mongo';
+import { StackError } from '../errors/StackError.ts';
+import { IProcessEnv } from './config.ts';
+import { MESSAGES } from 'src/constants/messages.ts';
+import { Scream } from '../services/Scream.service.ts';
+import { Mongo } from './Mongo.ts';
 
 @singleton()
 @injectable()

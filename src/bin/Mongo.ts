@@ -1,8 +1,8 @@
 import mongoose, { Connection } from 'mongoose';
 import { container, injectable, singleton } from 'tsyringe';
-import { IProcessEnv } from './config';
-import { Scream } from '../services/Scream.service';
-import { StackError } from '../errors/StackError';
+import { IProcessEnv } from 'src/bin/config.ts';
+import { Scream } from '../services/Scream.service.ts';
+import { StackError } from '../errors/StackError.ts';
 
 @singleton()
 @injectable()

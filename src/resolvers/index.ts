@@ -1,1 +1,1 @@
-export * from './User.resolver';
+export * from './User.resolver.ts';

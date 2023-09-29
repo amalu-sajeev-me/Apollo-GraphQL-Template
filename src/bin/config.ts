@@ -1,6 +1,6 @@
 import { container, injectable } from 'tsyringe';
 import z from 'zod';
-import { Scream } from '../services/Scream.service';
+import { Scream } from '../services/Scream.service.ts';
 
 @injectable()
 export class Config {

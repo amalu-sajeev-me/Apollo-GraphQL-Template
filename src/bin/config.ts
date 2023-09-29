@@ -7,6 +7,8 @@ export class Config {
     private static readonly scream: Scream = container.resolve(Scream);
     public static ENV_SCHEMA = z.object({
         PORT: z.string().min(4),
+        MONGO_URL: z.string().nonempty().url(),
+        MONGO_DBNAME: z.string().min(3).max(32)
     });
     protected static validateEnv = (() => {
         try {

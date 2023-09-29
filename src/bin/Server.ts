@@ -7,6 +7,7 @@ import { StackError } from '../errors/StackError';
 import { IProcessEnv } from './config';
 import { MESSAGES } from 'src/constants/messages';
 import { Scream } from '../services/Scream.service';
+import { Mongo } from './Mongo';
 
 @singleton()
 @injectable()
@@ -15,8 +16,10 @@ export class Server {
     private static isInitialized = false;
     private readonly app: Application = express();
     private readonly scream: Scream = container.resolve(Scream);
+    private readonly mongo: Mongo = container.resolve(Mongo);
 
     async initialize() {
+        await this.mongo.connect();
         const schema = await buildSchema({
             resolvers: [UserResolver]
         });

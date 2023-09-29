@@ -33,7 +33,7 @@ inquirer.prompt<Answers>([
       const answers = await inquirer.prompt([{
         name: 'push',
         type: 'confirm',
-        message: 'Do you wat to push your changes to GitHub now ?'
+        message: 'Do you want to push your changes to GitHub now ?'
       }]);
       const { push } = answers;
       if (push) execSync('git push -u origin HEAD');

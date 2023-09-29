@@ -30,9 +30,6 @@ inquirer.prompt<Answers>([
   const commitMessage: string = `[${answers.type}]: ${answers.message}`;
   try {
     execSync(`git commit -m "${commitMessage}"`, { stdio: 'inherit' });
-  } catch (error) {
-    console.log({ error });
-    if (error.status !== 1) {
       const answers = await inquirer.prompt([{
         name: 'push',
         type: 'confirm',
@@ -40,7 +37,7 @@ inquirer.prompt<Answers>([
       }]);
       const { push } = answers;
       if (push) execSync('git push -u origin HEAD');
-    }
+  } catch (error) {
     scream.error('operation failed');
     throw error;
   }

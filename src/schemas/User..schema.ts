@@ -1,8 +1,9 @@
 import { prop } from '@typegoose/typegoose';
+import { IUser } from 'src/zodSchemas/User.zod.ts';
 import { Field, ID, ObjectType } from 'type-graphql';
 
 @ObjectType()
-export class UserSchema {
+export class UserSchema implements IUser{
     @Field(_type => ID)
     id!: string;
 
